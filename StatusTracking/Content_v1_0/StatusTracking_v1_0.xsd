@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 rel. 2 sp1 (http://www.altova.com) by Kalle Launiala (Citrus Solutions Oy) -->
+<xs:schema xmlns="http://tempuri.org/Operation_v1_0.xsd" xmlns:mstns="http://tempuri.org/Operation_v1_0.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://tempuri.org/Operation_v1_0.xsd" elementFormDefault="qualified" id="Operation_v1_0">
+	<xs:element name="StatusTrackingAbstraction" type="mstns:StatusTrackingAbstractionType">
+		<xs:key name="StatusItem">
+			<xs:selector xpath="StatusItems/StatusItem"/>
+			<xs:field xpath="@name"/>
+		</xs:key>
+		<xs:key name="Group">
+			<xs:selector xpath="Groups/Group"/>
+			<xs:field xpath="@name"/>
+		</xs:key>
+		<xs:keyref name="ContainingGroupRefItem" refer="StatusItem">
+			<xs:selector xpath="Groups/Group/ItemRef"/>
+			<xs:field xpath="@itemName"/>
+		</xs:keyref>
+		<xs:keyref name="ContainingGroupRefGroup" refer="Group">
+			<xs:selector xpath="Groups/Group/GroupRef"/>
+			<xs:field xpath="@groupName"/>
+		</xs:keyref>
+	</xs:element>
+	<xs:complexType name="StatusValueType">
+		<xs:attribute name="trafficLightIndicator" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="red"/>
+					<xs:enumeration value="yellow"/>
+					<xs:enumeration value="green"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="indicatorValue" type="xs:decimal" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="StatusItemType">
+		<xs:sequence>
+			<xs:element name="StatusValue" type="StatusValueType"/>
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="StatusItemsType">
+		<xs:sequence>
+			<xs:element name="StatusItem" type="StatusItemType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GroupType">
+		<xs:sequence>
+			<xs:element name="ItemRef" type="ItemRefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="GroupRef" type="GroupRefType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="GroupsType">
+		<xs:sequence>
+			<xs:element name="Group" type="GroupType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ItemRefType">
+		<xs:attribute name="itemName" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="GroupRefType">
+		<xs:attribute name="groupName" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="ContainingGroupType">
+		<xs:sequence>
+			<xs:element name="ItemRef" type="ItemRefType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="GroupRef" type="GroupRefType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="groupName" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="RelationsType">
+		<xs:sequence>
+			<xs:element name="ContainingGroup" type="ContainingGroupType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StatusTrackingAbstractionType">
+		<xs:sequence>
+			<xs:element name="StatusItems" type="StatusItemsType"/>
+			<xs:element name="Groups" type="GroupsType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
