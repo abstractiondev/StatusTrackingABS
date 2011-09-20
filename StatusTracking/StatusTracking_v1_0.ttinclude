@@ -64,6 +64,10 @@ public partial class StatusItemType {
     
     private string nameField;
     
+    private string displayNameField;
+    
+    private string descriptionField;
+    
     /// <remarks/>
     public StatusValueType StatusValue {
         get {
@@ -82,6 +86,28 @@ public partial class StatusItemType {
         }
         set {
             this.nameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public string displayName {
+        get {
+            return this.displayNameField;
+        }
+        set {
+            this.displayNameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public string description {
+        get {
+            return this.descriptionField;
+        }
+        set {
+            this.descriptionField = value;
         }
     }
 }
@@ -195,6 +221,8 @@ public partial class GroupType {
     
     private string nameField;
     
+    private string descriptionField;
+    
     /// <remarks/>
     [System.Xml.Serialization.XmlElementAttribute("ItemRef")]
     public ItemRefType[] ItemRef {
@@ -225,6 +253,17 @@ public partial class GroupType {
         }
         set {
             this.nameField = value;
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlAttributeAttribute()]
+    public string description {
+        get {
+            return this.descriptionField;
+        }
+        set {
+            this.descriptionField = value;
         }
     }
 }

@@ -63,6 +63,10 @@ namespace StatusTracking_v1_0 {
         
         private string nameField;
         
+        private string displayNameField;
+        
+        private string descriptionField;
+        
         /// <remarks/>
         public StatusValueType StatusValue {
             get {
@@ -81,6 +85,28 @@ namespace StatusTracking_v1_0 {
             }
             set {
                 this.nameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string displayName {
+            get {
+                return this.displayNameField;
+            }
+            set {
+                this.displayNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string description {
+            get {
+                return this.descriptionField;
+            }
+            set {
+                this.descriptionField = value;
             }
         }
     }
@@ -194,6 +220,8 @@ namespace StatusTracking_v1_0 {
         
         private string nameField;
         
+        private string descriptionField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("ItemRef")]
         public ItemRefType[] ItemRef {
@@ -224,6 +252,17 @@ namespace StatusTracking_v1_0 {
             }
             set {
                 this.nameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string description {
+            get {
+                return this.descriptionField;
+            }
+            set {
+                this.descriptionField = value;
             }
         }
     }

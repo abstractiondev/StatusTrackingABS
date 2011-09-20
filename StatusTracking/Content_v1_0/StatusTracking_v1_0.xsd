@@ -35,7 +35,21 @@
 		<xs:sequence>
 			<xs:element name="StatusValue" type="StatusValueType"/>
 		</xs:sequence>
-		<xs:attribute name="name" type="xs:string" use="required"/>
+		<xs:attribute name="name" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Technical name that is mapped in groups.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="displayName" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Display name</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="description" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Detailed description of item</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 	</xs:complexType>
 	<xs:complexType name="StatusItemsType">
 		<xs:sequence>
@@ -47,7 +61,16 @@
 			<xs:element name="ItemRef" type="ItemRefType" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="GroupRef" type="GroupRefType" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
-		<xs:attribute name="name" type="xs:string" use="required"/>
+		<xs:attribute name="name" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Technical name used in hierarchy mapping.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="description" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>Detailed description of item</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 	</xs:complexType>
 	<xs:complexType name="GroupsType">
 		<xs:sequence>
