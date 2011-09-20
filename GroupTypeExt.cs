@@ -65,12 +65,11 @@ namespace StatusTracking_v1_0
             var redItems =
                 items.Where(item => item.StatusValue.trafficLightIndicator == StatusValueTypeTrafficLightIndicator.red);
             StatusSummaryItem summaryItem = new StatusSummaryItem
-            {
-                GreenCount = greenItems.Sum(item => item.StatusValue.indicatorValue),
-                YellowCount =
-                    yellowItems.Sum(item => item.StatusValue.indicatorValue),
-                RedCount = redItems.Sum(item => item.StatusValue.indicatorValue)
-            };
+                                                {
+                                                    GreenItems = greenItems.ToArray(),
+                                                    YellowItems = yellowItems.ToArray(),
+                                                    RedItems = redItems.ToArray(),
+                                                };
             return summaryItem;
         }
 

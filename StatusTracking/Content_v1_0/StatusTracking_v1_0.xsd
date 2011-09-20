@@ -29,6 +29,7 @@
 				</xs:restriction>
 			</xs:simpleType>
 		</xs:attribute>
+		<xs:attribute name="indicatorDisplayText" type="xs:string" use="required"/>
 		<xs:attribute name="indicatorValue" type="xs:decimal" use="required"/>
 	</xs:complexType>
 	<xs:complexType name="StatusItemType">

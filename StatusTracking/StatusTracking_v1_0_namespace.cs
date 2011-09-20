@@ -121,6 +121,8 @@ namespace StatusTracking_v1_0 {
         
         private StatusValueTypeTrafficLightIndicator trafficLightIndicatorField;
         
+        private string indicatorDisplayTextField;
+        
         private decimal indicatorValueField;
         
         /// <remarks/>
@@ -131,6 +133,17 @@ namespace StatusTracking_v1_0 {
             }
             set {
                 this.trafficLightIndicatorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public string indicatorDisplayText {
+            get {
+                return this.indicatorDisplayTextField;
+            }
+            set {
+                this.indicatorDisplayTextField = value;
             }
         }
         
