@@ -44,8 +44,6 @@
     <Compile Include="StatusTracking\StatusTracking_v1_0_namespace.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Common\CommonCodeblocks.ttinclude" />
-    <None Include="Common\XSDToIncludeGenerator.ttinclude" />
     <None Include="StatusTracking\Content_v1_0\StatusTracking_v1_0.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>StatusTracking_v1_0.xsd</DependentUpon>
