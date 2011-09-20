@@ -7,7 +7,14 @@
         public decimal GreenCount;
         public decimal GreenPercentage
         {
-            get { return (decimal)GreenCount / (RedCount + YellowCount + GreenCount); }
+            get
+            {
+                decimal totalDivider = RedCount + YellowCount + GreenCount;
+                if (totalDivider == 0)
+                    return 100;
+
+                return 100 * (decimal)GreenCount / (RedCount + YellowCount + GreenCount);
+            }
         }
     }
 }

@@ -14,6 +14,8 @@ namespace StatusTracking_v1_0
 
         public static GroupType[] GetSubGroups(this GroupType grp, StatusTrackingAbstractionType currAbstraction)
         {
+            if(grp.GroupRef == null)
+                return new GroupType[0];
             var groupTypes =
                 grp.GroupRef.Select(
                     groupRef => currAbstraction.Groups.Single(grpItem => grpItem.name == groupRef.groupName)).ToArray();
@@ -30,8 +32,8 @@ namespace StatusTracking_v1_0
                 var groupItems = groupTypes.SelectMany(subGroup => subGroup.GetStatusItems(false, currAbstraction));
                 subGroupItems = groupItems.ToArray();
             }
-            var itemTypes =
-                grp.ItemRef.Select(itemRef => currAbstraction.StatusItems.Single(item => item.name == itemRef.itemName));
+            var itemTypes = (grp.ItemRef ?? new ItemRefType[0])
+                .Select(itemRef => currAbstraction.StatusItems.Single(item => item.name == itemRef.itemName));
             StatusItemType[] result = itemTypes.Union(subGroupItems).Distinct().ToArray();
             return result;
 

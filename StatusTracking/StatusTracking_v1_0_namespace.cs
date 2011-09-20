@@ -20,8 +20,8 @@ namespace StatusTracking_v1_0 {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/Operation_v1_0.xsd")]
-    [System.Xml.Serialization.XmlRootAttribute("StatusTrackingAbstraction", Namespace="http://tempuri.org/Operation_v1_0.xsd", IsNullable=false)]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/StatusTracking_v1_0.xsd")]
+    [System.Xml.Serialization.XmlRootAttribute("StatusTrackingAbstraction", Namespace="http://tempuri.org/StatusTracking_v1_0.xsd", IsNullable=false)]
     public partial class StatusTrackingAbstractionType {
         
         private StatusItemType[] statusItemsField;
@@ -56,7 +56,7 @@ namespace StatusTracking_v1_0 {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/Operation_v1_0.xsd")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/StatusTracking_v1_0.xsd")]
     public partial class StatusItemType {
         
         private StatusValueType statusValueField;
@@ -90,7 +90,7 @@ namespace StatusTracking_v1_0 {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/Operation_v1_0.xsd")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/StatusTracking_v1_0.xsd")]
     public partial class StatusValueType {
         
         private StatusValueTypeTrafficLightIndicator trafficLightIndicatorField;
@@ -123,7 +123,7 @@ namespace StatusTracking_v1_0 {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
     [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/Operation_v1_0.xsd")]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/StatusTracking_v1_0.xsd")]
     public enum StatusValueTypeTrafficLightIndicator {
         
         /// <remarks/>
@@ -141,7 +141,7 @@ namespace StatusTracking_v1_0 {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/Operation_v1_0.xsd")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/StatusTracking_v1_0.xsd")]
     public partial class GroupRefType {
         
         private string groupNameField;
@@ -163,7 +163,7 @@ namespace StatusTracking_v1_0 {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/Operation_v1_0.xsd")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/StatusTracking_v1_0.xsd")]
     public partial class ItemRefType {
         
         private string itemNameField;
@@ -185,7 +185,7 @@ namespace StatusTracking_v1_0 {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/Operation_v1_0.xsd")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/StatusTracking_v1_0.xsd")]
     public partial class GroupType {
         
         private ItemRefType[] itemRefField;
