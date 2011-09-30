@@ -5,16 +5,50 @@ using System.Text;
 
 namespace StatusTracking_v1_0
 {
-    public static class GroupTypeExt
+    public partial class StatusTrackingAbstractionType
     {
-        public static StatusItemType[] GetStatusItems(this GroupType grp, StatusTrackingAbstractionType currAbstraction)
+        public GroupType[] GetTopLevelGroups()
         {
+            StatusTrackingAbstractionType currAbstraction = this;
+            GroupType[] groups = currAbstraction.Groups.Where(topLevelCandidate =>
+                                         currAbstraction.Groups.All(nonParent => nonParent.GroupRef == null || 
+                                                                    nonParent.GroupRef.All(
+                                                                        gRef => gRef.groupName != topLevelCandidate.name)))
+                .ToArray();
+            return groups;
+        }
+    }
+
+    public partial class GroupType
+    {
+        public StatusItemType[] GetStatusItems(StatusTrackingAbstractionType currAbstraction)
+        {
+            GroupType grp = this;
             return grp.GetStatusItems(false, currAbstraction);
         }
-
-        public static GroupType[] GetSubGroups(this GroupType grp, StatusTrackingAbstractionType currAbstraction)
+        public StatusSummaryItem GetGroupSummary(bool deepSummary, StatusTrackingAbstractionType currAbstraction)
         {
-            if(grp.GroupRef == null)
+            GroupType grp = this;
+            StatusItemType[] items = grp.GetStatusItems(deepSummary, currAbstraction);
+            var greenItems =
+                items.Where(item => item.StatusValue.trafficLightIndicator == StatusValueTypeTrafficLightIndicator.green);
+            var yellowItems =
+                items.Where(item => item.StatusValue.trafficLightIndicator == StatusValueTypeTrafficLightIndicator.yellow);
+            var redItems =
+                items.Where(item => item.StatusValue.trafficLightIndicator == StatusValueTypeTrafficLightIndicator.red);
+            StatusSummaryItem summaryItem = new StatusSummaryItem
+            {
+                GreenItems = greenItems.ToArray(),
+                YellowItems = yellowItems.ToArray(),
+                RedItems = redItems.ToArray(),
+            };
+            return summaryItem;
+        }
+
+        public GroupType[] GetSubGroups(StatusTrackingAbstractionType currAbstraction)
+        {
+            GroupType grp = this;
+            if (grp.GroupRef == null)
                 return new GroupType[0];
             var groupTypes =
                 grp.GroupRef.Select(
@@ -22,8 +56,9 @@ namespace StatusTracking_v1_0
             return groupTypes;
         }
 
-        public static StatusItemType[] GetStatusItems(this GroupType grp, bool deepSummary, StatusTrackingAbstractionType currAbstraction)
+        public StatusItemType[] GetStatusItems(bool deepSummary, StatusTrackingAbstractionType currAbstraction)
         {
+            GroupType grp = this;
             StatusItemType[] subGroupItems = new StatusItemType[0];
             if (deepSummary)
             {
@@ -50,28 +85,22 @@ namespace StatusTracking_v1_0
             groupTypes.AddRange(groupTypes);
         }
 
-        public static StatusSummaryItem GetGroupSummary(this GroupType grp, StatusTrackingAbstractionType currAbstraction)
+        public StatusSummaryItem GetGroupSummary(StatusTrackingAbstractionType currAbstraction)
         {
-            return GetGroupSummary(grp, false, currAbstraction);
+            GroupType grp = this;
+            return grp.GetGroupSummary(false, currAbstraction);
         }
 
-        public static StatusSummaryItem GetGroupSummary(this GroupType grp, bool deepSummary, StatusTrackingAbstractionType currAbstraction)
-        {
-            StatusItemType[] items = grp.GetStatusItems(deepSummary, currAbstraction);
-            var greenItems =
-                items.Where(item => item.StatusValue.trafficLightIndicator == StatusValueTypeTrafficLightIndicator.green);
-            var yellowItems =
-                items.Where(item => item.StatusValue.trafficLightIndicator == StatusValueTypeTrafficLightIndicator.yellow);
-            var redItems =
-                items.Where(item => item.StatusValue.trafficLightIndicator == StatusValueTypeTrafficLightIndicator.red);
-            StatusSummaryItem summaryItem = new StatusSummaryItem
-                                                {
-                                                    GreenItems = greenItems.ToArray(),
-                                                    YellowItems = yellowItems.ToArray(),
-                                                    RedItems = redItems.ToArray(),
-                                                };
-            return summaryItem;
-        }
+
+    }
+
+    public static class GroupTypeExt
+    {
+
+        //public static StatusItemType[] GetStatusItems(this GroupType grp, StatusTrackingAbstractionType currAbstraction)
+        //{
+        //    return grp.GetStatusItems(false, currAbstraction);
+        //}
 
     }
 }
