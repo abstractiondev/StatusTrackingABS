@@ -235,6 +235,12 @@ namespace StatusTracking_v1_0 {
         
         private string descriptionField;
         
+        private GroupTypeGroupRole groupRoleField;
+        
+        public GroupType() {
+            this.groupRoleField = GroupTypeGroupRole.None;
+        }
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("ItemRef")]
         public ItemRefType[] ItemRef {
@@ -278,5 +284,30 @@ namespace StatusTracking_v1_0 {
                 this.descriptionField = value;
             }
         }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        [System.ComponentModel.DefaultValueAttribute(GroupTypeGroupRole.None)]
+        public GroupTypeGroupRole groupRole {
+            get {
+                return this.groupRoleField;
+            }
+            set {
+                this.groupRoleField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://tempuri.org/StatusTracking_v1_0.xsd")]
+    public enum GroupTypeGroupRole {
+        
+        /// <remarks/>
+        None,
+        
+        /// <remarks/>
+        Root,
     }
 }

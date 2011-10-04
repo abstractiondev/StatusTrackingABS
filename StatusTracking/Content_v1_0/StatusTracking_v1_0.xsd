@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSpy v2011 rel. 2 sp1 (http://www.altova.com) by Kalle Launiala (Citrus Solutions Oy) -->
 <xs:schema xmlns="http://tempuri.org/StatusTracking_v1_0.xsd" xmlns:mstns="http://tempuri.org/StatusTracking_v1_0.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://tempuri.org/StatusTracking_v1_0.xsd" elementFormDefault="qualified" id="StatusTracking_v1_0">
-	<xs:element name="StatusTrackingAbstraction" type="mstns:StatusTrackingAbstractionType">
+	<xs:element name="StatusTrackingAbstraction" type="StatusTrackingAbstractionType">
 		<xs:key name="StatusItem">
 			<xs:selector xpath="StatusItems/StatusItem"/>
 			<xs:field xpath="@name"/>
@@ -71,6 +71,29 @@
 			<xs:annotation>
 				<xs:documentation>Detailed description of item</xs:documentation>
 			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="groupRole" default="None">
+			<xs:annotation>
+				<xs:documentation>(Opt = "None") Group Role.
+
+None = Group, that can contain items and be member of other groups.
+
+Root = Group, that can contain items and be member of other groups, but also is a root of an independent unit. This can be for example a feature set in a software.</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="None">
+						<xs:annotation>
+							<xs:documentation>Group, that can contain items and be member of other groups.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+					<xs:enumeration value="Root">
+						<xs:annotation>
+							<xs:documentation>Group, that can contain items and be member of other groups, but also is a root of an independent unit. This can be for example a feature set in a software.</xs:documentation>
+						</xs:annotation>
+					</xs:enumeration>
+				</xs:restriction>
+			</xs:simpleType>
 		</xs:attribute>
 	</xs:complexType>
 	<xs:complexType name="GroupsType">
