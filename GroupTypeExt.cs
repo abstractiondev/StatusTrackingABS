@@ -68,7 +68,7 @@ namespace StatusTracking_v1_0
                 subGroupItems = groupItems.ToArray();
             }
             var itemTypes = (grp.ItemRef ?? new ItemRefType[0])
-                .Select(itemRef => currAbstraction.StatusItems.Single(item => item.name == itemRef.itemName));
+                .Select(itemRef => currAbstraction.StatusItems.StatusItem.Single(item => item.name == itemRef.itemName));
             StatusItemType[] result = itemTypes.Union(subGroupItems).Distinct().ToArray();
             return result;
 

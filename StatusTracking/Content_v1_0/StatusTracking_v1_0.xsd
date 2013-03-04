@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSpy v2011 rel. 2 sp1 (http://www.altova.com) by Kalle Launiala (Citrus Solutions Oy) -->
+<!-- edited with XMLSpy v2011 rel. 3 sp1 (x64) (http://www.altova.com) by Kalle Launiala (Citrus Solutions Oy) -->
 <xs:schema xmlns="http://tempuri.org/StatusTracking_v1_0.xsd" xmlns:mstns="http://tempuri.org/StatusTracking_v1_0.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://tempuri.org/StatusTracking_v1_0.xsd" elementFormDefault="qualified" id="StatusTracking_v1_0">
 	<xs:element name="StatusTrackingAbstraction" type="StatusTrackingAbstractionType">
 		<xs:key name="StatusItem">
@@ -56,6 +56,13 @@
 		<xs:sequence>
 			<xs:element name="StatusItem" type="StatusItemType" maxOccurs="unbounded"/>
 		</xs:sequence>
+		<xs:attribute name="scopeName" type="xs:string" default="">
+			<xs:annotation>
+				<xs:documentation>(Opt = "") Scope name of the status items. 
+
+Required for multiple scopes during transformation process, such as series of operation from different domains.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 	</xs:complexType>
 	<xs:complexType name="GroupType">
 		<xs:sequence>
