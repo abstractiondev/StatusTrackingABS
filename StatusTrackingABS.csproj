@@ -34,6 +34,10 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Mono.TextTemplating, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Mono.TextTemplating.1.1.0\lib\net45\Mono.TextTemplating.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,6 +53,7 @@
     <Compile Include="StatusTracking\StatusTracking_v1_0_namespace.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="StatusTracking\Content_v1_0\StatusTracking_v1_0.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>StatusTracking_v1_0.xsd</DependentUpon>
